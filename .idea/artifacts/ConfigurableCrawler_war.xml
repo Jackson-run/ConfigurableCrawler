@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ConfigurableCrawler:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ConfigurableCrawler-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ConfigurableCrawler:war exploded" />
+    </root>
+  </artifact>
+</component>
