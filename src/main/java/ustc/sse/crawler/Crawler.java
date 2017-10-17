@@ -26,6 +26,8 @@ public class Crawler {
     private Scheduler scheduler;
     //持久化器
     private Storage storage;
+    //爬虫的配置信息
+    private Config config;
 
     public Download getDownload() {
         return download;
@@ -57,5 +59,13 @@ public class Crawler {
 
     public void setStorage(Storage storage) {
         this.storage = storage;
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
     }
 }

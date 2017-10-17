@@ -1,22 +1,24 @@
 package ustc.sse.crawler.scheduler;
 
+import ustc.sse.crawler.Request;
+
 /**
  * 爬虫调度器，用作url管理
  * 每个Scheduler必须实现Scheduler接口并定制化下面两个方法
- * 实现url加入{@link #push(String)}
- * 实现url弹出{@link #poll()}
+ * 实现Request加入{@link #push(Request)}
+ * 实现Request弹出{@link #poll()}
  * @author wangrun
  * @version 0.1
  */
 public interface Scheduler {
     /**
-     * 增加url供取出
-     * @param url
+     * 增加Request供取出
+     * @param request
      */
-    public void push(String url);
+    public void push(Request request);
 
     /**
-     * 得到url供爬取
+     * 得到Request供爬取
      * @return url
      */
     public String poll();
