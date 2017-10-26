@@ -1,5 +1,8 @@
 package ustc.sse.crawler;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 实现可配置的重要组件，通过此类实现Download和Processor自定义规则
  * @author wangrun
@@ -15,6 +18,8 @@ public class Config {
     private int retryTime = 0;
     //爬取超时时间
     private int timeOut = 5000;
+    //定义爬取逻辑infoMap
+    Map<String,List<String>> processorInfoMap = null;
 
     public String getCharset() {
         return charset;
@@ -46,6 +51,14 @@ public class Config {
 
     public void setTimeOut(int timeOut) {
         this.timeOut = timeOut;
+    }
+
+    public Map<String, List<String>> getProcessorInfoMap() {
+        return processorInfoMap;
+    }
+
+    public void setProcessorInfoMap(Map<String, List<String>> processorInfoMap) {
+        this.processorInfoMap = processorInfoMap;
     }
 
     @Override

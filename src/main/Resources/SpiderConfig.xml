@@ -1,0 +1,61 @@
+<!--根节点为Spider-->
+<Spider>
+    <!--配置Download-->
+    <Download>
+        <!--字符集-->
+        <Charset>gb2312</Charset>
+        <!--每次爬取得休眠时间-->
+        <SleepTime>5000</SleepTime>
+        <!--重新爬取得时间-->
+        <RetryTime>0</RetryTime>
+        <!--爬取超时时间-->
+        <TimeOut>5000</TimeOut>
+    </Download>
+    <!--解析器配置
+    根据静态网页的css树结构配置标签树
+    -->
+    <Processor>
+        <Title>
+            <listview symbol=".">
+                <list symbol=".">
+                    <h3 symbol="">
+                        <a symbol="">
+                        </a>
+                    </h3>
+                </list>
+            </listview>
+        </Title>
+
+        <Info>
+            <listview symbol=".">
+                <list symbol=".">
+                    <info symbol=".">
+                    </info>
+                </list>
+            </listview>
+        </Info>
+
+        <Time>
+            <listview symbol=".">
+                <list symbol=".">
+                    <clear.date symbol=".">
+                        <fr.arial symbol=".">
+                        </fr.arial>
+                    </clear.date>
+                </list>
+            </listview>
+        </Time>
+
+        <Topic>
+            <listview symbol=".">
+                <list symbol=".">
+                    <clear.date symbol=".">
+                        <a symbol="">
+                        </a>
+                    </clear.date>
+                </list>
+            </listview>
+        </Topic>
+
+    </Processor>
+</Spider>
