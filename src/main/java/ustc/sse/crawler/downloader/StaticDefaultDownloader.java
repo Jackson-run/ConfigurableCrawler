@@ -20,12 +20,19 @@ import java.io.IOException;
 public class StaticDefaultDownloader implements Download {
     private CloseableHttpClient client = HttpClients.createDefault();
     private int threadNum = 1;
-    //休眠时间
+    /**
+     * 休眠时间
+     */
     private int sleepTime;
-    //重新爬取间隔时间
+    /**
+     * 重新爬取间隔时间
+     */
     private int retryTime;
-    //爬取超时时间
+    /**
+     * 爬取超时时间
+     */
     private int timeOut;
+    @Override
     public Response download(Request request, Config config) {
         String url = request.getUrl();
         sleepTime = config.getSleepTime();
@@ -44,7 +51,7 @@ public class StaticDefaultDownloader implements Download {
         }
         return response;
     }
-
+    @Override
     public void setThreadNum(int threadNum) {
         this.threadNum = threadNum;
     }

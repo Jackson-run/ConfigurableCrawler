@@ -5,14 +5,18 @@ import java.util.Map;
 
 /**
  * 页面解析后的结果集
- * 通过Storage持久化
+ * 通过Pipeline持久化
  * @author wangrun
  * @version 0.1
  */
 public class ResultModel {
-    //源请求
+    /**
+     *  源请求
+     */
     private Request request;
-    //解析达到的信息用Map存储
+    /**
+     * 解析达到的信息用Map存储
+     */
     private Map<String, Object> elementMap = new LinkedHashMap<String, Object>();
 
     public Request getRequest() {

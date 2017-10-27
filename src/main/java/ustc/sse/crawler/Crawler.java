@@ -18,15 +18,25 @@ import ustc.sse.crawler.scheduler.Scheduler;
  * @version 0.1
  */
 public class Crawler {
-    //下载器
+    /**
+     * 下载器
+     */
     private Download download;
-    //页面处理器
+    /**
+     * 页面处理器
+     */
     private PageProcessor pageProcessor;
-    //爬虫调度器
+    /**
+     * 爬虫调度器
+     */
     private Scheduler scheduler;
-    //持久化器
+    /**
+     * 持久化器
+     */
     private Pipeline pipeline;
-    //爬虫的配置信息
+    /**
+     * 爬虫的配置信息
+     */
     private Config config;
 
     public Download getDownload() {

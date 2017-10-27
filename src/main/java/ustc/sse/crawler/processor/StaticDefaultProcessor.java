@@ -5,8 +5,8 @@ import ustc.sse.crawler.Config;
 import ustc.sse.crawler.Response;
 
 public class StaticDefaultProcessor implements PageProcessor{
+    @Override
     public void process(Response response, Config config) {
-        Document document = response.getDocument();
 
     }
 }

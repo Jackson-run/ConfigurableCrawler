@@ -5,17 +5,23 @@ import java.util.Map;
 
 /**
  * 包括页面的url及其其他信息通过一个Map附加
- * @author Jackson
+ * @author wangrun
  * @version 0.1
  */
 public class Request implements Serializable{
 
     private static final long serialVersionUID = -7840986409554597762L;
-    //待爬取的url
+    /**
+     * 待爬取的url
+     */
     private String url;
-    //附加信息通过一个Map设置
+    /**
+     * 附加信息通过一个Map设置
+     */
     private Map<String,Object> extras;
-    //字符集charset
+    /**
+     * 字符集charset
+     */
     private String charset;
 
     public Request() {
@@ -78,7 +84,9 @@ public class Request implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
         if (obj == null || getClass() != obj.getClass()){
             return false;
         }

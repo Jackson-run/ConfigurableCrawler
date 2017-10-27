@@ -10,15 +10,26 @@ import java.util.Map;
  */
 
 public class Config {
-    //网页字符集
+    /**
+     * 网页字符集
+     */
     private String charset = "gb2312";
-    //休眠时间
+    /**
+     * 休眠时间
+     */
     private int sleepTime = 5000;
-    //重新爬取间隔时间
+    /**
+     * 重新爬取间隔时间
+     */
     private int retryTime = 0;
-    //爬取超时时间
+    /**
+     * 爬取超时时间
+     */
     private int timeOut = 5000;
-    //定义爬取逻辑infoMap
+    /**
+     * 定义爬取逻辑infoMap
+     * Key为要爬取的信息名value为对应Key的获取路径的list
+     */
     Map<String,List<String>> processorInfoMap = null;
 
     public String getCharset() {

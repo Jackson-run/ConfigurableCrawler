@@ -6,20 +6,30 @@ import java.util.Map;
 
 /**
  * 页面Download之后的页面信息封装
- * @author Jackson
+ * @author wangrun
  * @version 0.1
  */
 public class Response {
 
-    //源请求
+    /**
+     * 源请求
+     */
     private Request request;
-    //字符集
+    /**
+     * 字符集
+     */
     private String charset;
-    //是下载成功
+    /**
+     * 是否下载成功
+     */
     private boolean downloadSuccess = true;
-    //下载成功后的Document
+    /**
+     * 下载成功后的Document
+     */
     private Document document;
-    //附加信息Map
+    /**
+     * 附加信息Map
+     */
     private Map<String,Object> extras;
 
     public String getCharset() {
