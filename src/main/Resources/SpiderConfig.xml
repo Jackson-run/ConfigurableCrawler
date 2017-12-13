@@ -10,6 +10,13 @@
         <RetryTime>0</RetryTime>
         <!--爬取超时时间-->
         <TimeOut>5000</TimeOut>
+
+        <!--静态页面抓取标签-->
+        <StaticPage>
+            <StartUrl>http://info.meadin.com/Index.shtml</StartUrl>
+            <ContentUrl>http://info.meadin.com/Index_[0-9]*[1-9][0-9]*.shtml</ContentUrl>
+        </StaticPage>
+
     </Download>
     <!--解析器配置
     根据静态网页的css树结构配置标签树

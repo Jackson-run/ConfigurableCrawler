@@ -67,11 +67,27 @@ public class Configurable {
                     if(elem.getName().equals("TimeOut")){
                         config.setTimeOut(Integer.parseInt(elem.getTextTrim()));
                     }
+                    if(elem.getName().equals("StaticPage")){
+                        config.setPageType(PageType.STATIC);
+                        List<Element> StaticConfig = elem.elements();
+                        for(Element element: StaticConfig){
+                            if(element.getName().equals("StartUrl")){
+                                //System.out.println("starturl: "+element.getTextTrim());
+                                config.setStartUrl(element.getTextTrim());
+                            }
+                            if(element.getName().equals("ContentUrl")){
+                                //System.out.println("ContentUrl: "+element.getTextTrim());
+                                config.setContentUrl(element.getTextTrim());
+                            }
+                        }
+
+                    }
                 }
                /* System.out.println(config.getCharset());
                 System.out.println(config.getSleepTime());
                 System.out.println(config.getTimeOut());
                 System.out.println(config.getRetryTime());*/
+
             }
             if (e.getName().equals("Processor")){
                 List<Element> processorSubElement = e.elements();
@@ -86,7 +102,8 @@ public class Configurable {
                         elementIterator.getName();
                     }
                     infoMap.put(element.getName().trim(),nodeNameList);
-                    /*for(String str : nodeNameList){
+                    /*System.out.println("topic:"+element.getName());
+                    for(String str : nodeNameList){
                         System.out.println(str);
                     }
                     System.out.println("-----------------");*/
@@ -99,7 +116,7 @@ public class Configurable {
     }
 
     public static void main(String[] args) {
-        new Configurable().getConfig("/SpiderConfig.xml");
+        System.out.println(new Configurable().getConfig("/SpiderConfig.xml").getProcessorInfoMap().toString());
     }
 
     /**

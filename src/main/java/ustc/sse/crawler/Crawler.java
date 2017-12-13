@@ -78,4 +78,5 @@ public class Crawler {
     public void setConfig(Config config) {
         this.config = config;
     }
+
 }

@@ -17,7 +17,7 @@ public class ResultModel {
     /**
      * 解析达到的信息用Map存储
      */
-    private Map<String, Object> elementMap = new LinkedHashMap<String, Object>();
+    private Map<String, String> elementMap = new LinkedHashMap<String, String>();
 
     public Request getRequest() {
         return request;
@@ -27,11 +27,11 @@ public class ResultModel {
         this.request = request;
     }
 
-    public Map<String, Object> getElementMap() {
+    public Map<String, String> getElementMap() {
         return elementMap;
     }
 
-    public void setElementMap(Map<String, Object> elementMap) {
+    public void setElementMap(Map<String, String> elementMap) {
         this.elementMap = elementMap;
     }
 

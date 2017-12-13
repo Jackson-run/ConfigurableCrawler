@@ -21,5 +21,5 @@ public interface Scheduler {
      * 得到Request供爬取
      * @return url
      */
-    public String poll();
+    public Request poll();
 }

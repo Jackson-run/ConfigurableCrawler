@@ -1,5 +1,7 @@
 package ustc.sse.crawler;
 
+import ustc.sse.crawler.utils.PageType;
+
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,19 @@ public class Config {
      * 爬取超时时间
      */
     private int timeOut = 5000;
+    /**
+     * 页面类型
+     */
+    private PageType pageType = null;
+    /**
+     * 起始url
+     */
+    private String StartUrl = "";
+    /**
+     *内容页即待爬取页的正则表达
+     */
+    private String ContentUrl = "";
+
     /**
      * 定义爬取逻辑infoMap
      * Key为要爬取的信息名value为对应Key的获取路径的list
@@ -62,6 +77,30 @@ public class Config {
 
     public void setTimeOut(int timeOut) {
         this.timeOut = timeOut;
+    }
+
+    public PageType getPageType() {
+        return pageType;
+    }
+
+    public void setPageType(PageType pageType) {
+        this.pageType = pageType;
+    }
+
+    public String getStartUrl() {
+        return StartUrl;
+    }
+
+    public void setStartUrl(String startUrl) {
+        StartUrl = startUrl;
+    }
+
+    public String getContentUrl() {
+        return ContentUrl;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        ContentUrl = contentUrl;
     }
 
     public Map<String, List<String>> getProcessorInfoMap() {
