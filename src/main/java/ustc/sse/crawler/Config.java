@@ -43,7 +43,7 @@ public class Config {
 
     /**
      * 定义爬取逻辑infoMap
-     * Key为要爬取的信息名value为对应Key的获取路径的list
+     * Key为要爬取的信息名,value为对应Key的获取路径的list
      */
     Map<String,List<String>> processorInfoMap = null;
 

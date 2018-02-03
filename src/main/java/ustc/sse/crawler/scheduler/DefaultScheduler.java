@@ -4,28 +4,26 @@ import ustc.sse.crawler.Request;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
- * 默认Scheduler用set实现
+ * 默认Scheduler用BlockingQueue实现
  * @author wangrun
  * @version 0.1
  */
 public class DefaultScheduler implements Scheduler{
-    Map<Request,Boolean> requestMap = new HashMap<Request, Boolean>();
+    BlockingQueue<Request> requestBlockingQueue = new LinkedBlockingQueue<Request>();
 
     @Override
-    public void push(Request request) {
-        requestMap.put(request,false);
+    public  synchronized void push(Request request) {
+
     }
 
     @Override
-    public Request poll() {
-        for(Map.Entry<Request,Boolean> requestBooleanEntry :requestMap.entrySet()){
-            if(requestBooleanEntry.getValue()==false){
-                return requestBooleanEntry.getKey();
-            }
-        }
+    public  synchronized Request poll() {
+
         return null;
     }
 }

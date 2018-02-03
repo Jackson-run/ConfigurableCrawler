@@ -51,6 +51,10 @@ public class Configurable {
         //根节点下的所有节点elements的list
         List<Element> rootSubNodelist = doc.getRootElement().elements();
         for (Element e: rootSubNodelist){
+
+            /**
+             * 下载器相关配置
+             */
             if(e.getName().equals("Download")){
                 //download节点下的所有elements的list
                 List<Element> downloadSubElements = e.elements();
@@ -67,6 +71,10 @@ public class Configurable {
                     if(elem.getName().equals("TimeOut")){
                         config.setTimeOut(Integer.parseInt(elem.getTextTrim()));
                     }
+
+                    /**
+                     *静态页面爬取
+                     */
                     if(elem.getName().equals("StaticPage")){
                         config.setPageType(PageType.STATIC);
                         List<Element> StaticConfig = elem.elements();
@@ -89,6 +97,9 @@ public class Configurable {
                 System.out.println(config.getRetryTime());*/
 
             }
+            /**
+             * 处理器相关配置
+             */
             if (e.getName().equals("Processor")){
                 List<Element> processorSubElement = e.elements();
                 for(Element element : processorSubElement){

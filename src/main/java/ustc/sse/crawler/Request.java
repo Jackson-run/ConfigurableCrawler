@@ -11,14 +11,17 @@ import java.util.Map;
 public class Request implements Serializable{
 
     private static final long serialVersionUID = -7840986409554597762L;
+
     /**
      * 待爬取的url
      */
     private String url;
+
     /**
      * 附加信息通过一个Map设置
      */
     private Map<String,Object> extras;
+
     /**
      * 字符集charset
      */
