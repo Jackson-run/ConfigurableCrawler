@@ -2,24 +2,24 @@ package ustc.sse.crawler.utils.DB;
 
 import java.sql.*;
 
-public class Sql
+public class SqlExecuter
 {
-	private Statement stmt;
+private Statement stmt;
 	private Connection conn;
 	public  PreparedStatement pst;
 	private ResultSet rs;
 	static DBXMLParse parse = new DBXMLParse();
 	static ConBean bean = null;
 
-	public Sql()
+	public SqlExecuter()
 	{
 		try
 		{
 			parse.init();
 			bean = parse.getBean();
 			String url=bean.getCon()+"&characterEncoding=utf-8";
-			String user="root";
-			String password="123456";
+			String user=bean.getU_name().trim();
+			String password=bean.getU_pass().trim();
 			Class.forName("com.mysql.jdbc.Driver");
 			conn=DriverManager.getConnection(url,user,password);
 			stmt=conn.createStatement();
@@ -68,11 +68,30 @@ public class Sql
 		}
 		catch (SQLException se)
 		{
-			System.out.println("see"+se);
+			System.out.println("update exception"+se);
 			se.printStackTrace();
 		}
 
 	}
+
+	/**
+	 * 插入一条记录
+	 * @param sql
+	 */
+	public boolean insert(String sql){
+		boolean isSuccess = false;
+		try {
+			stmt.execute(sql);
+			isSuccess=stmt.getUpdateCount()>0?true:false;
+		}
+		catch (SQLException se){
+			System.out.println("insert exception"+se);
+			se.printStackTrace();
+		}
+		return isSuccess;
+	}
+
+
 	public void close()
 	{
 		try
@@ -87,4 +106,8 @@ public class Sql
 		}
 
 	}
+
+	/*public static void main(String[] args) {
+		System.out.println(new Sql().insert("insert into urllist values(\"dasdsdas\",\"www.baidu.com\");"));
+	}*/
 }

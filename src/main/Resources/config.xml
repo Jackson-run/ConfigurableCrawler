@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ConFactory>
 <MysqlCon>
-	<Con>jdbc:mysql://localhost:3306/robot?useUnicode=true</Con>
+	<Con>jdbc:mysql://localhost:3306/Spider?useUnicode=true</Con>
 	<U_name>root</U_name>
 	<U_pass>123456</U_pass>
 </MysqlCon>
