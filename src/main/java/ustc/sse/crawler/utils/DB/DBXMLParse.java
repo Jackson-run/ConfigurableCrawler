@@ -1,7 +1,6 @@
 package ustc.sse.crawler.utils.DB;
 
 import org.xml.sax.SAXException;
-import ustc.sse.crawler.utils.Configurable;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -20,7 +19,7 @@ public class DBXMLParse {
 		try {
 			SAXParser parser = factory.newSAXParser();
 			DBSAXParserHandler handler = new DBSAXParserHandler();
-			File xmlFile = new File(DBXMLParse.class.getResource("/config.xml").getFile());
+			File xmlFile = new File(DBXMLParse.class.getResource("/DBconfig.xml").getFile());
 			parser.parse(xmlFile, handler);
 			conbean = handler.getBean();
 			//System.out.println(conbean.getCon()+conbean.getU_name()+conbean.getU_pass());

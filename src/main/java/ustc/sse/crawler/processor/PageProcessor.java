@@ -2,6 +2,7 @@ package ustc.sse.crawler.processor;
 
 import ustc.sse.crawler.Config;
 import ustc.sse.crawler.Response;
+import ustc.sse.crawler.ResultModel;
 
 /**
  * PageProcessor是Crawler的组件之一实现页面的解析
@@ -17,7 +18,7 @@ public interface PageProcessor {
      * @param response 传入页面下载器生成的Response对象
      * @param config 传入配置对象
      */
-    public void process(Response response, Config config);
+    public ResultModel process(Response response, Config config);
 
 
 }

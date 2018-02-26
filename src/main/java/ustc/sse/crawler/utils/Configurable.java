@@ -6,10 +6,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import ustc.sse.crawler.Config;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 读取SpiderConfig.xml文件获得配置选项
@@ -113,14 +110,36 @@ public class Configurable {
                         elementIterator.getName();
                     }
                     infoMap.put(element.getName().trim(),nodeNameList);
-                    /*System.out.println("topic:"+element.getName());
-                    for(String str : nodeNameList){
-                        System.out.println(str);
-                    }
-                    System.out.println("-----------------");*/
+
                 }
                 config.setProcessorInfoMap(infoMap);
 
+            }
+            /**
+             * 持久化器相关配置
+             */
+            if(e.getName().equals("Pipeline")){
+                Map<String,String> dbMappingMap = new LinkedHashMap<String, String>();
+                List<Element> pipelineSubElement = e.elements();
+                for(Element element : pipelineSubElement){
+                    if(element.getName().equals("DBmapping")){
+                        List<Element> DBmapElem = element.elements();
+                        for(Element elem : DBmapElem){
+                            if(elem.getName().equals("TableName")){
+                                String tableName = elem.attribute("value").getValue();
+                                dbMappingMap.put("tablename",tableName);
+                                System.out.println(tableName);
+                                List<Element> dbMapElem = elem.elements();
+                                for(Element dbMap : dbMapElem){
+                                    String tapName = dbMap.getName();
+                                    String rowName = dbMap.getTextTrim();
+                                    dbMappingMap.put(tapName,rowName);
+                                }
+                            }
+                        }
+                    }
+                }
+                config.setDbMap(dbMappingMap);
             }
         }
         return  config;

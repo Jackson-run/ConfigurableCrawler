@@ -1,5 +1,6 @@
 package ustc.sse.crawler.pipeline;
 
+import ustc.sse.crawler.Config;
 import ustc.sse.crawler.ResultModel;
 
 /**
@@ -15,5 +16,5 @@ public interface Pipeline {
      * 需定制化持久化策略
      * @param resultModel
      */
-    public void storage(ResultModel resultModel);
+    public void storage(ResultModel resultModel, Config config);
 }

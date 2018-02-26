@@ -36,7 +36,7 @@ private Statement stmt;
 			sql.getMessage();
 		}
 	}
-	public PreparedStatement Preupdate(String s)
+	public PreparedStatement preProcess(String s)
 	{
 		try{
 			pst=conn.prepareStatement(s);

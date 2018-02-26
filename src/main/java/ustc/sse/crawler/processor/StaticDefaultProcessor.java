@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class StaticDefaultProcessor implements PageProcessor{
     @Override
-    public void process(Response response, Config config) {
+    public ResultModel process(Response response, Config config) {
         Document resultDom = response.getDocument();
         Map<String,List<String>> parseMap = config.getProcessorInfoMap();
         ResultModel staticResultModel = new ResultModel();
@@ -33,6 +33,7 @@ public class StaticDefaultProcessor implements PageProcessor{
         }
         System.out.println(resultInfo);
         staticResultModel.setElementMap(resultInfo);
+        return staticResultModel;
     }
 
 }

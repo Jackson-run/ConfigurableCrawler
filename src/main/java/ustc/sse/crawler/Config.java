@@ -46,6 +46,10 @@ public class Config {
      * Key为要爬取的信息名,value为对应Key的获取路径的list
      */
     Map<String,List<String>> processorInfoMap = null;
+    /**
+     * 爬取数据标签与数据库表列的映射
+     */
+    Map<String,String> dbMap = null;
 
     public String getCharset() {
         return charset;
@@ -53,6 +57,14 @@ public class Config {
 
     public void setCharset(String charset) {
         this.charset = charset;
+    }
+
+    public Map<String, String> getDbMap() {
+        return dbMap;
+    }
+
+    public void setDbMap(Map<String, String> dbMap) {
+        this.dbMap = dbMap;
     }
 
     public int getSleepTime() {
