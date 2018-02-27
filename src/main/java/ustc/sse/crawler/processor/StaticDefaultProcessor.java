@@ -23,12 +23,17 @@ public class StaticDefaultProcessor implements PageProcessor{
             String infoKey = listEntry.getKey();
             List<String> pathList = listEntry.getValue();
             Elements infoElem = null;
-            for(String path : pathList){
-                if(infoElem!=null){
-                    infoElem = resultDom.select(path.trim());
+            for(int i = 0;i<pathList.size();i++){
+                //if(infoElem!=null){
+                if(i==0) {
+                    infoElem = resultDom.select(pathList.get(i).trim());
                 }
+                else {
+                    infoElem = infoElem.select(pathList.get(i).trim());
+                }
+              //  }
             }
-            String infoValue = infoElem.text();
+            String infoValue = infoElem.first().text();
             resultInfo.put(infoKey,infoValue);
         }
         System.out.println(resultInfo);

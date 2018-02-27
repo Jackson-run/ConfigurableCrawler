@@ -69,13 +69,13 @@
     <!--持久化配置-->
     <Pipeline>
         <DBmapping>
-            <TableName value="news">
+            <TableNam value="news">
                 <!--<爬取得内容名（必须与Processor中子标签名完全相同）>映射到数据库表中的列名<爬取得内容名>-->
                 <Title>title</Title>
                 <Info>info</Info>
                 <Time>time</Time>
                 <Topic>topic</Topic>
-            </TableName>
+            </TableNam>
         </DBmapping>
     </Pipeline>
 
