@@ -22,4 +22,10 @@ public interface Scheduler {
      * @return url
      */
     public Request poll();
+
+    /**
+     * 判断scheduler是否为空
+     * @return
+     */
+    public boolean hasNext();
 }

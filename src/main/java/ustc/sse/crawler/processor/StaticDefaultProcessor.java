@@ -4,8 +4,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import ustc.sse.crawler.Config;
+import ustc.sse.crawler.Request;
 import ustc.sse.crawler.Response;
 import ustc.sse.crawler.ResultModel;
+import ustc.sse.crawler.scheduler.Scheduler;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +16,8 @@ import java.util.Set;
 
 public class StaticDefaultProcessor implements PageProcessor{
     @Override
-    public ResultModel process(Response response, Config config) {
+    public ResultModel process(Response response, Config config, Scheduler scheduler) {
+        addLink(scheduler,response.getDocument(),config.getContentUrl().trim());
         Document resultDom = response.getDocument();
         Map<String,List<String>> parseMap = config.getProcessorInfoMap();
         ResultModel staticResultModel = new ResultModel();
@@ -39,6 +42,21 @@ public class StaticDefaultProcessor implements PageProcessor{
         System.out.println(resultInfo);
         staticResultModel.setElementMap(resultInfo);
         return staticResultModel;
+    }
+
+    /**
+     * 获得document中的所有外链接
+     * @param document
+     */
+    public void addLink(Scheduler scheduler,Document document,String regex){
+        Elements elements = document.select("a[href]");
+        for (Element link : elements) {
+            String url = link.attr("abs:href").trim();
+            if(url.matches(regex)){
+                scheduler.push(new Request(url));
+            }
+        }
+
     }
 
 }

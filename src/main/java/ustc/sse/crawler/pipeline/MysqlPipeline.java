@@ -23,20 +23,25 @@ public class MysqlPipeline implements Pipeline{
             zwstr+="?,";
         }
         zwstr+="?";
-        String sqlStr = "insert into news("+zwstr+") values("+zwstr+");";
-        PreparedStatement preparedStatement = sqlExecuter.preProcess(sqlStr);
-        for(Map.Entry<String, String> result:resultModel.getElementMap().entrySet()) {
-            String tabName = result.getKey();
-            String tabValue = result.getValue();
+        //实属无奈之举啊/(ㄒoㄒ)/~~
+       // String sqlStr = "insert into news("+zwstr+") values("+zwstr+");";
+        String sqlStr = "insert into news(";
+        for(Map.Entry<String, String> result:resultModel.getElementMap().entrySet()){
+            String tabName = result.getKey().trim();
             String rowName = dbMappingMap.get(tabName);
-            for (int i = 1; i<=rowLen;i++) {
+            sqlStr+=rowName+",";
+        }
+        sqlStr = sqlStr.substring(0,sqlStr.length()-1)+") values("+zwstr+");";
+        PreparedStatement preparedStatement = sqlExecuter.preProcess(sqlStr);
+        int i = 0;
+        for(Map.Entry<String, String> result:resultModel.getElementMap().entrySet()) {
+            i++;
+            String tabValue = result.getValue().trim();
                 try {
-                    preparedStatement.setString(i, rowName);
-                    preparedStatement.setString(i+rowLen,tabValue);
+                    preparedStatement.setString(i,tabValue);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            }
         }
         try {
             int changeSize = preparedStatement.executeUpdate();

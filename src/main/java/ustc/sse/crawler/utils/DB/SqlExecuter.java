@@ -17,7 +17,7 @@ private Statement stmt;
 		{
 			parse.init();
 			bean = parse.getBean();
-			String url=bean.getCon()+"&characterEncoding=utf-8";
+			String url=bean.getCon()+"&useSSL=false&characterEncoding=utf-8";
 			String user=bean.getU_name().trim();
 			String password=bean.getU_pass().trim();
 			Class.forName("com.mysql.jdbc.Driver");
@@ -86,7 +86,7 @@ private Statement stmt;
 		}
 		catch (SQLException se){
 			System.out.println("insert exception"+se);
-			se.printStackTrace();
+			//se.printStackTrace();
 		}
 		return isSuccess;
 	}

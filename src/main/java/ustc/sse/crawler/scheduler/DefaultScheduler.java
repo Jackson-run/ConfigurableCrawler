@@ -55,4 +55,9 @@ public class DefaultScheduler implements Scheduler{
         }
         return null;
     }
+
+    @Override
+    public boolean hasNext(){
+        return !requestBlockingQueue.isEmpty();
+    }
 }
