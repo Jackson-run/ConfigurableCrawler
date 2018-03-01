@@ -10,7 +10,7 @@ import ustc.sse.crawler.Request;
  * @author wangrun
  * @version 0.1
  */
-public interface Scheduler {
+public interface RequestScheduler {
     /**
      * 增加Request供取出
      * @param request

@@ -3,16 +3,16 @@ package ustc.sse.crawler;
 import ustc.sse.crawler.downloader.Download;
 import ustc.sse.crawler.pipeline.Pipeline;
 import ustc.sse.crawler.processor.PageProcessor;
-import ustc.sse.crawler.scheduler.Scheduler;
+import ustc.sse.crawler.scheduler.RequestScheduler;
 
 /**
- * 爬虫主类包括四个组件Download,PageProcessor,Scheduler，Pipeline
+ * 爬虫主类包括四个组件Download,PageProcessor,RequestScheduler，Pipeline
  * 每个组件为Crawler类的一个成员变量
  * 每个组件都被定义为一个独立的接口
  * 可通过自定义各个组件并通过各自的Setter方法实现自定义设置
  * @see Download
  * @see PageProcessor
- * @see Scheduler
+ * @see RequestScheduler
  * @see Pipeline
  * @author wangrun
  * @version 0.1
@@ -29,7 +29,7 @@ public class Crawler {
     /**
      * 爬虫调度器
      */
-    private Scheduler scheduler;
+    private RequestScheduler scheduler;
     /**
      * 持久化器
      */
@@ -55,11 +55,11 @@ public class Crawler {
         this.pageProcessor = pageProcessor;
     }
 
-    public Scheduler getScheduler() {
+    public RequestScheduler getScheduler() {
         return scheduler;
     }
 
-    public void setScheduler(Scheduler scheduler) {
+    public void setScheduler(RequestScheduler scheduler) {
         this.scheduler = scheduler;
     }
 

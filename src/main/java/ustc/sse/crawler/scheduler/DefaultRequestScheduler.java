@@ -3,8 +3,6 @@ package ustc.sse.crawler.scheduler;
 import ustc.sse.crawler.Request;
 import ustc.sse.crawler.utils.DB.SqlExecuter;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author wangrun
  * @version 0.1
  */
-public class DefaultScheduler implements Scheduler{
+public class DefaultRequestScheduler implements RequestScheduler {
     BlockingQueue<Request> requestBlockingQueue = new LinkedBlockingQueue<Request>();
     SqlExecuter sqlExecuter = new SqlExecuter();
     MD5Encipher md5Encipher = new MD5Encipher();
@@ -57,7 +55,7 @@ public class DefaultScheduler implements Scheduler{
     }
 
     @Override
-    public boolean hasNext(){
+    public synchronized boolean hasNext(){
         return !requestBlockingQueue.isEmpty();
     }
 }

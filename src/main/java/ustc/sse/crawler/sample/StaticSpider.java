@@ -7,8 +7,10 @@ import ustc.sse.crawler.pipeline.MysqlPipeline;
 import ustc.sse.crawler.pipeline.Pipeline;
 import ustc.sse.crawler.processor.PageProcessor;
 import ustc.sse.crawler.processor.StaticDefaultProcessor;
-import ustc.sse.crawler.scheduler.DefaultScheduler;
-import ustc.sse.crawler.scheduler.Scheduler;
+import ustc.sse.crawler.scheduler.DefaultRequestScheduler;
+import ustc.sse.crawler.scheduler.DefaultResultModelScheduler;
+import ustc.sse.crawler.scheduler.RequestScheduler;
+import ustc.sse.crawler.scheduler.ResultModelScheduler;
 import ustc.sse.crawler.utils.Configurable;
 
 /**
@@ -28,16 +30,19 @@ public class StaticSpider extends Crawler {
         Download download = getDownload();
         Pipeline pipeline = getPipeline();
         PageProcessor pageProcessor = getPageProcessor();
-        Scheduler scheduler = getScheduler();
+        RequestScheduler scheduler = getScheduler();
+        ResultModelScheduler resultModelScheduler = new DefaultResultModelScheduler();
         scheduler.push(startRequest);
         Request request = null;
         Response response = null;
         ResultModel resultModel = null;
         while (scheduler.hasNext()) {
             request = scheduler.poll();
-            response = download.download(request, config);
-            resultModel = pageProcessor.process(response, config, scheduler);
-            pipeline.storage(resultModel, config);
+            if(request!=null) {
+                response = download.download(request, config);
+                pageProcessor.process(response, config, scheduler,resultModelScheduler);
+                pipeline.storage(resultModelScheduler,config);
+            }
         }
     }
 
@@ -46,7 +51,7 @@ public class StaticSpider extends Crawler {
         staticSpider.setConfig(new Configurable().getConfig("/SpiderConfig.xml"));
         staticSpider.setDownload(new StaticDefaultDownloader());
         staticSpider.setPageProcessor(new StaticDefaultProcessor());
-        staticSpider.setScheduler(new DefaultScheduler());
+        staticSpider.setScheduler(new DefaultRequestScheduler());
         staticSpider.setPipeline(new MysqlPipeline());
         staticSpider.crawler();
     }
