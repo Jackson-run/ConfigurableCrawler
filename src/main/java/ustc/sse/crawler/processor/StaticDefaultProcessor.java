@@ -40,13 +40,19 @@ public class StaticDefaultProcessor implements PageProcessor{
             elemId++;
         }
         for(int i = 0;i<elem[1].size();i++){
-            resultInfo.clear();
-            for (int j = 0;j<parseMap.size();j++){
-                resultInfo.put(keyName[j],elem[j].get(i).text());
-            }
+            resultInfo = new HashMap<String, String>();
+            staticResultModel = new ResultModel();
+                for (int j = 0; j < parseMap.size(); j++) {
+                    try {
+                        resultInfo.put(keyName[j], elem[j].get(i).text());
+                    }
+                    catch (IndexOutOfBoundsException e){
+                        System.out.println("越界一次");
+                    }
+                }
             staticResultModel.setElementMap(resultInfo);
+            resultModelScheduler.push(staticResultModel);
         }
-        resultModelScheduler.push(staticResultModel);
     }
 
     /**

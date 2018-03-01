@@ -26,9 +26,10 @@ public class MysqlPipeline implements Pipeline{
         zwstr += "?";
         //实属无奈之举啊/(ㄒoㄒ)/~~
         // String sqlStr = "insert into news("+zwstr+") values("+zwstr+");";
-        String sqlStr = "insert into news(";
+        String sqlStr="";
         ResultModel resultModel = null;
         while (resultModelScheduler.hasNext()) {
+            sqlStr = "insert into news(";
             resultModel = resultModelScheduler.poll();
             for (Map.Entry<String, String> result : resultModel.getElementMap().entrySet()) {
                 String tabName = result.getKey().trim();
