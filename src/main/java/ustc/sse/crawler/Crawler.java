@@ -10,12 +10,13 @@ import ustc.sse.crawler.scheduler.RequestScheduler;
  * 每个组件为Crawler类的一个成员变量
  * 每个组件都被定义为一个独立的接口
  * 可通过自定义各个组件并通过各自的Setter方法实现自定义设置
+ *
+ * @author wangrun
+ * @version 0.1
  * @see Download
  * @see PageProcessor
  * @see RequestScheduler
  * @see Pipeline
- * @author wangrun
- * @version 0.1
  */
 public class Crawler {
     /**

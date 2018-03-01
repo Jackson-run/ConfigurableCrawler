@@ -12,12 +12,14 @@ public interface ResultModelScheduler {
 
     /**
      * 增加ResultModel供取出
+     *
      * @param resultModel
      */
     public void push(ResultModel resultModel);
 
     /**
      * 取出ResultModel
+     *
      * @return
      */
     public ResultModel poll();

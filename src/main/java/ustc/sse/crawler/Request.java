@@ -5,10 +5,11 @@ import java.util.Map;
 
 /**
  * 包括页面的url及其其他信息通过一个Map附加
+ *
  * @author wangrun
  * @version 0.1
  */
-public class Request implements Serializable{
+public class Request implements Serializable {
 
     private static final long serialVersionUID = -7840986409554597762L;
 
@@ -20,7 +21,7 @@ public class Request implements Serializable{
     /**
      * 附加信息通过一个Map设置
      */
-    private Map<String,Object> extras;
+    private Map<String, Object> extras;
 
     /**
      * 字符集charset
@@ -60,26 +61,28 @@ public class Request implements Serializable{
 
     /**
      * 设置附加信息
+     *
      * @param key
      * @param value
      */
 
-    public void putExtra(String key,Object value){
-        extras.put(key,value);
+    public void putExtra(String key, Object value) {
+        extras.put(key, value);
     }
 
     /**
      * 获得附加信息
+     *
      * @param key
      */
 
-    public Object getExtra(String key){
+    public Object getExtra(String key) {
         return extras.get(key);
     }
 
     @Override
     public int hashCode() {
-        if(url!=null&&!url.equals("")){
+        if (url != null && !url.equals("")) {
             return url.hashCode();
         }
         return 0;
@@ -90,11 +93,11 @@ public class Request implements Serializable{
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()){
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        String url =  ((Request)obj).getUrl();
-        if(this.url.equals(url)){
+        String url = ((Request) obj).getUrl();
+        if (this.url.equals(url)) {
             return true;
         }
         return false;
@@ -102,10 +105,10 @@ public class Request implements Serializable{
 
     @Override
     public String toString() {
-        String result ="Request{"+
-                "url:"+url+", "
-                +"charset:"+charset+", "
-                +"Extras:"+extras.toString()+
+        String result = "Request{" +
+                "url:" + url + ", "
+                + "charset:" + charset + ", "
+                + "Extras:" + extras.toString() +
                 "}";
         return result;
     }

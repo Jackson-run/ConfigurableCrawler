@@ -6,12 +6,13 @@ import java.util.Map;
 /**
  * 页面解析后的结果集
  * 通过Pipeline持久化
+ *
  * @author wangrun
  * @version 0.1
  */
 public class ResultModel {
     /**
-     *  源请求
+     * 源请求
      */
     private Request request;
     /**
@@ -35,15 +36,15 @@ public class ResultModel {
         this.elementMap = elementMap;
     }
 
-    public Object getElementValue(String key){
+    public Object getElementValue(String key) {
         return elementMap.get(key);
     }
 
     @Override
     public String toString() {
-        String result = "ResultModel{"+
-                "request_url:"+request.getUrl()+", "+
-                "elementMap:"+elementMap+
+        String result = "ResultModel{" +
+                "request_url:" + request.getUrl() + ", " +
+                "elementMap:" + elementMap +
                 "}";
         return result;
     }

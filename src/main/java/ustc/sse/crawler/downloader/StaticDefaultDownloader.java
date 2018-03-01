@@ -1,4 +1,5 @@
 package ustc.sse.crawler.downloader;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 /**
  * 纯静态网页默认下载器
+ *
  * @author wangrun
  * @version 0.1
  */
@@ -32,6 +34,7 @@ public class StaticDefaultDownloader implements Download {
      * 爬取超时时间
      */
     private int timeOut;
+
     @Override
     public Response download(Request request, Config config) {
         String url = request.getUrl();
@@ -43,14 +46,14 @@ public class StaticDefaultDownloader implements Download {
         Response response = new Response();
         try {
             HttpResponse httpResponse = client.execute(httpGet);
-            Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(),charSet),url);
+            Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(), charSet), url);
             response.setDocument(document);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return response;
     }
+
     @Override
     public void setThreadNum(int threadNum) {
         this.threadNum = threadNum;

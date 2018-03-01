@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 
 /**
  * MD5加密器
+ *
  * @author wangrun
  * @version 0.1
  */
@@ -11,6 +12,7 @@ public class MD5Encipher {
 
     /**
      * MD5加密
+     *
      * @param s
      * @return MD5加密字符串
      */
@@ -27,6 +29,7 @@ public class MD5Encipher {
 
     /**
      * 16进制转换
+     *
      * @param bytes
      * @return 16进制转换后的字符串
      */

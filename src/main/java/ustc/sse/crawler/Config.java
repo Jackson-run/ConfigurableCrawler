@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * 实现可配置的重要组件，通过此类实现Download和Processor自定义规则
+ *
  * @author wangrun
  * @version 0.1
  */
@@ -37,7 +38,7 @@ public class Config {
      */
     private String StartUrl = "";
     /**
-     *内容页即待爬取页的正则表达
+     * 内容页即待爬取页的正则表达
      */
     private String ContentUrl = "";
 
@@ -45,11 +46,11 @@ public class Config {
      * 定义爬取逻辑infoMap
      * Key为要爬取的信息名,value为对应Key的获取路径的list
      */
-    Map<String,List<String>> processorInfoMap = null;
+    Map<String, List<String>> processorInfoMap = null;
     /**
      * 爬取数据标签与数据库表列的映射
      */
-    Map<String,String> dbMap = null;
+    Map<String, String> dbMap = null;
 
     public String getCharset() {
         return charset;
@@ -125,17 +126,17 @@ public class Config {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj==null||obj.getClass()!=getClass()){
+        if (obj == null || obj.getClass() != getClass()) {
             return false;
         }
-        if(obj==this){
+        if (obj == this) {
             return true;
         }
-        Config config = (Config)obj;
-        if(config.retryTime!=retryTime||config.sleepTime!=sleepTime||config.timeOut!=timeOut){
+        Config config = (Config) obj;
+        if (config.retryTime != retryTime || config.sleepTime != sleepTime || config.timeOut != timeOut) {
             return false;
         }
-        if(config.charset!=null?!config.charset.equals(charset):charset!=null){
+        if (config.charset != null ? !config.charset.equals(charset) : charset != null) {
             return false;
         }
         return true;
@@ -143,11 +144,11 @@ public class Config {
 
     @Override
     public String toString() {
-        String result ="Config{" +
-                "Charset:"+charset+", "+
-                "SleepTime:"+sleepTime+", "+
-                "RetryTime:"+retryTime+", "+
-                "TimeOut:"+timeOut+"}";
+        String result = "Config{" +
+                "Charset:" + charset + ", " +
+                "SleepTime:" + sleepTime + ", " +
+                "RetryTime:" + retryTime + ", " +
+                "TimeOut:" + timeOut + "}";
         return result;
     }
 }

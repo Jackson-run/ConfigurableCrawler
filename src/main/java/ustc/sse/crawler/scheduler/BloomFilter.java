@@ -17,12 +17,12 @@ public class BloomFilter {
     /**
      * 不同哈希函数的种子，一般应取质数
      */
-    private static final int[] seeds = new int[] { 5, 7, 11, 13, 31, 37, 61 };
+    private static final int[] seeds = new int[]{5, 7, 11, 13, 31, 37, 61};
 
     private BitSet bits = new BitSet(DEFAULT_SIZE);
 
     /**
-     *  哈希函数对象
+     * 哈希函数对象
      */
     private SimpleHash[] func = new SimpleHash[seeds.length];
 
@@ -44,6 +44,7 @@ public class BloomFilter {
 
     /**
      * 判断字符串是否已经被bits标记
+     *
      * @param value
      * @return
      */
@@ -61,7 +62,7 @@ public class BloomFilter {
     }
 
     /**
-     *哈希函数类
+     * 哈希函数类
      */
     public static class SimpleHash {
         private int cap;

@@ -9,7 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class MysqlPipeline implements Pipeline{
+/**
+ * @author wangrun
+ * @version 0.1
+ */
+public class MysqlPipeline implements Pipeline {
 
     @Override
     public void storage(ResultModelScheduler resultModelScheduler, Config config) {
@@ -26,7 +30,7 @@ public class MysqlPipeline implements Pipeline{
         zwstr += "?";
         //实属无奈之举啊/(ㄒoㄒ)/~~
         // String sqlStr = "insert into news("+zwstr+") values("+zwstr+");";
-        String sqlStr="";
+        String sqlStr = "";
         ResultModel resultModel = null;
         while (resultModelScheduler.hasNext()) {
             sqlStr = "insert into news(";

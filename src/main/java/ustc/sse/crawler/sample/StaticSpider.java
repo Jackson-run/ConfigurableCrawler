@@ -38,10 +38,10 @@ public class StaticSpider extends Crawler {
         ResultModel resultModel = null;
         while (scheduler.hasNext()) {
             request = scheduler.poll();
-            if(request!=null) {
+            if (request != null) {
                 response = download.download(request, config);
-                pageProcessor.process(response, config, scheduler,resultModelScheduler);
-                pipeline.storage(resultModelScheduler,config);
+                pageProcessor.process(response, config, scheduler, resultModelScheduler);
+                pipeline.storage(resultModelScheduler, config);
             }
         }
     }

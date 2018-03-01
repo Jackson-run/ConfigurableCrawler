@@ -1,33 +1,38 @@
 package ustc.sse.crawler.scheduler;
 
-import ustc.sse.crawler.Request;
 import ustc.sse.crawler.ResultModel;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-public class DefaultResultModelScheduler implements ResultModelScheduler{
+/**
+ * @author wangrun
+ * @version 0.1
+ */
+public class DefaultResultModelScheduler implements ResultModelScheduler {
     BlockingQueue<ResultModel> resultModelBlockingQueue = new LinkedBlockingQueue<ResultModel>();
+
     /**
      * 增加ResultModel供取出
+     *
      * @param resultModel
      */
     @Override
-    public synchronized void push(ResultModel resultModel){
+    public synchronized void push(ResultModel resultModel) {
         resultModelBlockingQueue.add(resultModel);
     }
 
     /**
      * 取出ResultModel
+     *
      * @return
      */
     @Override
-    public synchronized ResultModel poll(){
+    public synchronized ResultModel poll() {
         try {
             return resultModelBlockingQueue.poll(100, TimeUnit.MILLISECONDS);
-        }
-        catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return null;
@@ -39,7 +44,7 @@ public class DefaultResultModelScheduler implements ResultModelScheduler{
      * @return
      */
     @Override
-    public synchronized boolean hasNext(){
+    public synchronized boolean hasNext() {
         return !resultModelBlockingQueue.isEmpty();
     }
 }

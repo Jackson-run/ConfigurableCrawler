@@ -6,6 +6,7 @@ import java.util.Map;
 
 /**
  * 页面Download之后的页面信息封装
+ *
  * @author wangrun
  * @version 0.1
  */
@@ -30,7 +31,7 @@ public class Response {
     /**
      * 附加信息Map
      */
-    private Map<String,Object> extras;
+    private Map<String, Object> extras;
 
     public String getCharset() {
         return charset;
@@ -66,20 +67,22 @@ public class Response {
 
     /**
      * 设置附加信息
+     *
      * @param key
      * @param value
      */
 
-    public void putExtra(String key,Object value){
-        extras.put(key,value);
+    public void putExtra(String key, Object value) {
+        extras.put(key, value);
     }
 
     /**
      * 获得附加信息
+     *
      * @param key
      */
 
-    public Object getExtra(String key){
+    public Object getExtra(String key) {
         return extras.get(key);
     }
 
@@ -93,12 +96,12 @@ public class Response {
 
     @Override
     public String toString() {
-        String result ="Response{"+
-                "request_url:"+request.getUrl()+", "+
-                "charset:"+charset+", "+
-                "isDownload:"+downloadSuccess+", "+
-                "extras:"+extras+", "+
-                "document:"+document+
+        String result = "Response{" +
+                "request_url:" + request.getUrl() + ", " +
+                "charset:" + charset + ", " +
+                "isDownload:" + downloadSuccess + ", " +
+                "extras:" + extras + ", " +
+                "document:" + document +
                 "}";
         return result;
     }
