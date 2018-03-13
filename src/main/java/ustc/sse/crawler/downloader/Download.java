@@ -3,6 +3,8 @@ package ustc.sse.crawler.downloader;
 import ustc.sse.crawler.Config;
 import ustc.sse.crawler.Request;
 import ustc.sse.crawler.Response;
+import ustc.sse.crawler.scheduler.RequestScheduler;
+import ustc.sse.crawler.scheduler.ResponseScheduler;
 
 /**
  * Download所有下载器必须实现Downloade接口实现网页下载功能
@@ -17,11 +19,12 @@ public interface Download {
     /**
      * 下载一个web页面并返回一个Response对象用于processor解析
      *
-     * @param request
+     * @param requestScheduler
      * @param config
-     * @return Response对象用于processor解析
+     * @param responseScheduler
+     * @return
      */
-    public Response download(Request request, Config config);
+        public void download(RequestScheduler requestScheduler, Config config, ResponseScheduler responseScheduler);
 
     /**
      * 设置Crawler用于下载的线程数目

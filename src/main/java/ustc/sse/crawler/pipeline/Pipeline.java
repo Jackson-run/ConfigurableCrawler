@@ -21,4 +21,6 @@ public interface Pipeline {
      * @param config
      */
     public void storage(ResultModelScheduler resultModelScheduler, Config config);
+
+    public void setThreadNum(int num);
 }

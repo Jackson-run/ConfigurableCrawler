@@ -10,8 +10,12 @@ import org.jsoup.nodes.Document;
 import ustc.sse.crawler.Config;
 import ustc.sse.crawler.Request;
 import ustc.sse.crawler.Response;
+import ustc.sse.crawler.scheduler.RequestScheduler;
+import ustc.sse.crawler.scheduler.ResponseScheduler;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * 纯静态网页默认下载器
@@ -19,7 +23,7 @@ import java.io.IOException;
  * @author wangrun
  * @version 0.1
  */
-public class StaticDefaultDownloader implements Download {
+public class StaticDefaultDownloader implements Download,Runnable{
     private CloseableHttpClient client = HttpClients.createDefault();
     private int threadNum = 1;
     /**
@@ -35,23 +39,24 @@ public class StaticDefaultDownloader implements Download {
      */
     private int timeOut;
 
+    private ResponseScheduler responseScheduler = null;
+
+    private RequestScheduler requestScheduler = null;
+
+    Config config = null;
+
     @Override
-    public Response download(Request request, Config config) {
-        String url = request.getUrl();
+    public void download(RequestScheduler requestScheduler, Config config, ResponseScheduler responseScheduler) {
+        this.requestScheduler = requestScheduler;
+        this.config = config;
+        this.responseScheduler = responseScheduler;
         sleepTime = config.getSleepTime();
         retryTime = config.getRetryTime();
         timeOut = config.getTimeOut();
-        HttpGet httpGet = new HttpGet(url);
-        String charSet = request.getCharset();
-        Response response = new Response();
-        try {
-            HttpResponse httpResponse = client.execute(httpGet);
-            Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(), charSet), url);
-            response.setDocument(document);
-        } catch (IOException e) {
-            e.printStackTrace();
+        ExecutorService exec = Executors.newFixedThreadPool(threadNum);
+        for (int i =0;i<threadNum;i++){
+            exec.execute(this);
         }
-        return response;
     }
 
     @Override
@@ -85,5 +90,26 @@ public class StaticDefaultDownloader implements Download {
 
     public void setTimeOut(int timeOut) {
         this.timeOut = timeOut;
+    }
+
+    @Override
+    public void run() {
+        while (!Thread.interrupted()) {
+            if (requestScheduler.hasNext()) {
+                Request request = requestScheduler.poll();
+                String url = request.getUrl();
+                HttpGet httpGet = new HttpGet(url);
+                String charSet = request.getCharset();
+                Response response = new Response();
+                try {
+                    HttpResponse httpResponse = client.execute(httpGet);
+                    Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(), charSet), url);
+                    response.setDocument(document);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                responseScheduler.push(response);
+            }
+        }
     }
 }

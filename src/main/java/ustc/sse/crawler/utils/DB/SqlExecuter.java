@@ -34,7 +34,7 @@ public class SqlExecuter {
         }
     }
 
-    public PreparedStatement preProcess(String s) {
+    public synchronized PreparedStatement preProcess(String s) {
         try {
             pst = conn.prepareStatement(s);
         } catch (SQLException ee) {
@@ -44,7 +44,7 @@ public class SqlExecuter {
     }
 
     //查询数据库
-    public ResultSet selectSql(String s) {
+    public synchronized ResultSet selectSql(String s) {
         try {
             rs = stmt.executeQuery(s);
         } catch (SQLException r) {
@@ -54,7 +54,7 @@ public class SqlExecuter {
     }
 
     //更新数据库
-    public void update(String sql) {
+    public synchronized void update(String sql) {
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException se) {
@@ -69,7 +69,7 @@ public class SqlExecuter {
      *
      * @param sql
      */
-    public boolean insert(String sql) {
+    public synchronized boolean insert(String sql) {
         boolean isSuccess = false;
         try {
             stmt.execute(sql);
@@ -82,7 +82,7 @@ public class SqlExecuter {
     }
 
 
-    public void close() {
+    public synchronized void close() {
         try {
             stmt.close();
             conn.close();
