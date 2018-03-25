@@ -53,9 +53,10 @@ public class MysqlPipeline implements Pipeline,Runnable{
             // String sqlStr = "insert into news("+zwstr+") values("+zwstr+");";
             String sqlStr = "";
             ResultModel resultModel = null;
-            if(resultModelScheduler.hasNext()) {
+            resultModel = resultModelScheduler.poll();
+            if(resultModel!=null) {
                 sqlStr = "insert into news(";
-                resultModel = resultModelScheduler.poll();
+
                 for (Map.Entry<String, String> result : resultModel.getElementMap().entrySet()) {
                     String tabName = result.getKey().trim();
                     String rowName = dbMappingMap.get(tabName);

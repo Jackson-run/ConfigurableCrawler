@@ -24,7 +24,7 @@ public class SqlExecuter {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             stmt = conn.createStatement();
-            System.out.println("连接成功");
+            System.out.println("数据库连接成功");
         } catch (ClassNotFoundException ee) {
             System.out.println("找不到驱动连接不上");
             ee.printStackTrace();

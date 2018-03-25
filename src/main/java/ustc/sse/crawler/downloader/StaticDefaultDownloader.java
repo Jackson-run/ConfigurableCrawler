@@ -95,21 +95,22 @@ public class StaticDefaultDownloader implements Download,Runnable{
     @Override
     public void run() {
         while (!Thread.interrupted()) {
-            if (requestScheduler.hasNext()) {
                 Request request = requestScheduler.poll();
-                String url = request.getUrl();
-                HttpGet httpGet = new HttpGet(url);
-                String charSet = request.getCharset();
-                Response response = new Response();
-                try {
-                    HttpResponse httpResponse = client.execute(httpGet);
-                    Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(), charSet), url);
-                    response.setDocument(document);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(request!=null) {
+                    String url = request.getUrl();
+                    System.out.println(url+"---------------");
+                    HttpGet httpGet = new HttpGet(url);
+                    String charSet = request.getCharset();
+                    Response response = new Response();
+                    try {
+                        HttpResponse httpResponse = client.execute(httpGet);
+                        Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(), charSet), url);
+                        response.setDocument(document);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    responseScheduler.push(response);
                 }
-                responseScheduler.push(response);
-            }
         }
     }
 }

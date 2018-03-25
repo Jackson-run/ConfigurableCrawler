@@ -63,8 +63,8 @@ public class StaticDefaultProcessor implements PageProcessor,Runnable {
     @Override
     public void run() {
         while (!Thread.interrupted()) {
-            if (responseScheduler.hasNext()) {
                 Response response = responseScheduler.poll();
+                if(response!=null){
                 addLink(scheduler, response.getDocument(), config.getContentUrl().trim());
                 Document resultDom = response.getDocument();
                 Map<String, List<String>> parseMap = config.getProcessorInfoMap();
