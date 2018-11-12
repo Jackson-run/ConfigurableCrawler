@@ -13,7 +13,7 @@
 <title>新闻信息</title>
 </head>
 <%
-	// 获取请求的上下文
+ 	// 获取请求的上下文
 	String context = request.getContextPath();
 %>
 <script type="text/javascript">
